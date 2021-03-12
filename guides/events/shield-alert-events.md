@@ -19,29 +19,24 @@ next_page_id: events/pagination
 previous_page_id: events/polling
 source_url: >-
   https://github.com/box/developer.box.com/blob/main/content/guides/events/shield-alert-events.md
+fullyTranslated: true
 ---
 # Shield Events
 
-[Box Shield][box-shield] must be purchased and enabled on a Box enterprise in
-order to take advantage of the advanced security offerings outlined below.
+[Box Shield][box-shield] must be purchased and enabled on a Box enterprise in order to take advantage of the advanced security offerings outlined below.
 
 ## Threat detection alerts
 
-Shield [threat detection][threatdetect] delivers context-rich alerts on
-potential threats, such as compromised accounts and data theft, based on
-anomalous user behavior.
+Shield [threat detection][threatdetect] delivers context-rich alerts on potential threats, such as compromised accounts and data theft, based on anomalous user behavior.
 
 The possible alerts produced by Shield are for:
 
-1. Suspicious locations
-1. Suspicious sessions
-1. Anomalous downloads
-1. Malicious content
+1. 不審な場所
+2. 不審なセッション
+3. Anomalous downloads
+4. 悪意のあるコンテンツ
 
-All Shield threat detection alert events are produced within the
-[enterprise event][events] stream. These events follow the
-standard event object schema and the `event_type` value is set to
-`SHIELD_ALERT`.
+All Shield threat detection alert events are produced within the [enterprise event][events] stream. These events follow the standard event object schema and the `event_type` value is set to `SHIELD_ALERT`.
 
 ```js
 {
@@ -65,17 +60,13 @@ standard event object schema and the `event_type` value is set to
 }
 ```
 
-Information about the specific type of shield alert that triggered the event
-will be supplied within the `additional_details` object.
+イベントをトリガーした特定の種類のShieldアラートに関する情報は、`additional_details`オブジェクト内で提供されます。
 
-### Suspicious locations alert
+### 不審な場所に関するアラート
 
 <!--alex ignore-->
 
-A suspicious locations alert is produced when when Shield detects a user
-accessing content from an unusual, excluded geographic location, or 'host' IP
-address. It can be identified by the `Suspicious Locations` value
-within `additional_details.shield_alert.rule_category`.
+A suspicious locations alert is produced when when Shield detects a user accessing content from an unusual, excluded geographic location, or 'host' IP address. It can be identified by the `Suspicious Locations` value within `additional_details.shield_alert.rule_category`.
 
 <!--alex enable-->
 
@@ -123,12 +114,9 @@ The `additional_details` payload will provide the following details:
 }
 ```
 
-### Suspicious sessions alert
+### 不審なセッションに関するアラート
 
-A suspicious locations alert is produced when Shield detects a user accessing
-content in a session characterized by unusual user-agent strings, unusual IDs,
-uncommon types of applications, new IP addresses, and an improbably rapid change
-in the person's log-in location. It can be identified by the `Suspicious
+A suspicious locations alert is produced when Shield detects a user accessing content in a session characterized by unusual user-agent strings, unusual IDs, uncommon types of applications, new IP addresses, and an improbably rapid change in the person's log-in location. It can be identified by the `Suspicious
 Sessions` value within `additional_details.shield_alert.rule_category`.
 
 The `additional_details` payload will provide the following details:
@@ -204,14 +192,12 @@ The `additional_details` payload will provide the following details:
   }
 }
 ```
+
 <!-- markdownlint-enable line-length -->
 
-### Anomalous download alert
+### 異常なダウンロードに関するアラート
 
-A suspicious locations alert is produced when Shield detects an account holder
-who may be stealing sensitive content. It can be identified by the
-`Anomalous Download` value within
-`additional_details.shield_alert.rule_category`.
+A suspicious locations alert is produced when Shield detects an account holder who may be stealing sensitive content. It can be identified by the `Anomalous Download` value within `additional_details.shield_alert.rule_category`.
 
 The `additional_details` payload will provide the following details:
 
@@ -262,14 +248,12 @@ The `additional_details` payload will provide the following details:
   }
 }
 ```
+
 <!-- markdownlint-enable line-length -->
 
-### Malicious content alert
+### 悪意のあるコンテンツに関するアラート
 
-A suspicious locations alert is produced when Shield detects potential malware
-in content uploading to an account. It can be identified by the
-`Malicious Content` value within
-`additional_details.shield_alert.rule_category`.
+A suspicious locations alert is produced when Shield detects potential malware in content uploading to an account. It can be identified by the `Malicious Content` value within `additional_details.shield_alert.rule_category`.
 
 The `additional_details` payload will provide the following details:
 
@@ -351,25 +335,13 @@ The `additional_details` payload will provide the following details:
 
 ## Smart access
 
-[Smart Access][smartaccess] enables Box Admins to define and enforce
-classification-based access policies to control actions and prevent the
-unintentional leakage of sensitive content.
+[Smart Access][smartaccess] enables Box Admins to define and enforce classification-based access policies to control actions and prevent the unintentional leakage of sensitive content.
 
 ### External collaboration restriction
 
-If an external collaboration invitation is restricted, an event is produced
-within the [enterprise event][events] stream. These events follow
-the standard event object schema, with the `event_type` value set
-to: `SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION`,
-`SHIELD_EXTERNAL_COLLAB_INVITE_JUSTIFIED`,
-`SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED`
-`SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION`, or
-`SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED`.
+If an external collaboration invitation is restricted, an event is produced within the [enterprise event][events] stream. These events follow the standard event object schema, with the `event_type` value set to: `SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION`, `SHIELD_EXTERNAL_COLLAB_INVITE_JUSTIFIED`, `SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED` `SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION`, or `SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED`.
 
-If an external collaboration invitation is blocked, the `additional-details`
-payload of the `SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED` or
-`SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION` event will provide
-the following details:
+If an external collaboration invitation is blocked, the `additional-details` payload of the `SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED` or `SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION` event will provide the following details:
 
 ```js
 "additional_details": {
@@ -442,9 +414,7 @@ the following details:
 }
 ```
 
-If an external collaboration invitation is justified, the `additional_details`
-payload of the `SHIELD_EXTERNAL_COLLAB_INVITE_JUSTIFIED` event will provide the
-following details:
+If an external collaboration invitation is justified, the `additional_details` payload of the `SHIELD_EXTERNAL_COLLAB_INVITE_JUSTIFIED` event will provide the following details:
 
 ```js
 "additional_details": {
@@ -517,10 +487,7 @@ following details:
 }
 ```
 
-If external collaboration access is blocked, the `additional_details`
-payload of the `SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED` or
-`SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION` event will provide
-the following details:
+If external collaboration access is blocked, the `additional_details` payload of the `SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED` or `SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION` event will provide the following details:
 
 ```js
 "additional_details": {
@@ -561,10 +528,7 @@ the following details:
  }
 ```
 
-If a Shield justification is approved, an event is produced within the
-[enterprise event][events] stream. These events follow the
-standard event object schema and the `event_type` value set
-to `SHIELD_JUSTIFICATION_APPROVAL`.
+If a Shield justification is approved, an event is produced within the [enterprise event][events] stream. These events follow the standard event object schema and the `event_type` value set to `SHIELD_JUSTIFICATION_APPROVAL`.
 
 The `additional_details` payload will provide the following details:
 
@@ -614,14 +578,14 @@ The `additional_details` payload will provide the following details:
 
 <Message>
 
-Admins, please note that you may see two enterprise events instead of one when
-a justification is chosen from the share modal. For example, one
-`SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION` event and one
-`SHIELD_EXTERNAL_COLLAB_INVITE_JUSTIFIED` event.
+Admins, please note that you may see two enterprise events instead of one when a justification is chosen from the share modal. For example, one `SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION` event and one `SHIELD_EXTERNAL_COLLAB_INVITE_JUSTIFIED` event.
 
 </Message>
 
 [box-shield]: https://www.box.com/shield
-[threatdetect]:https://support.box.com/hc/en-us/articles/360044196113-Using-Threat-Detection
+
+[threatdetect]: https://support.box.com/hc/en-us/articles/360044196113-Using-Threat-Detection
+
 [smartaccess]: https://support.box.com/hc/en-us/articles/360044196353-Using-Smart-Access
+
 [events]: g://events/for-enterprise/
